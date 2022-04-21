@@ -4,6 +4,8 @@
 
 ![Screenshot at start](https://raw.githubusercontent.com/simonauner/hyper-honukai/master/demo/start.png)
 
+![Screenshot with tabs](https://raw.githubusercontent.com/simonauner/hyper-honukai/master/demo/tabbed.png)
+
 ## Install
 
 ### CLI
