@@ -1,45 +1,59 @@
+const parse = require("parse-color");
 
-const backgroundColor = '#282c34'
-const foregroundColor = '#abb2bf'
-const cursorColor = foregroundColor
-const borderColor = backgroundColor
+const CONFIG_KEY = "hyperHonukai";
+const DEFAULT_ALPHA = 0.95;
 
-const colors = {
-  black       : backgroundColor,
-  red         : '#e06c75', // red
-  green       : '#98c379', // green
-  yellow      : '#d19a66', // yellow
-  blue        : '#56b6c2', // blue
-  magenta     : '#c678dd', // pink
-  cyan        : '#56b6c2', // cyan
-  white       : '#d0d0d0', // light gray
-  lightBlack  : '#808080', // medium gray
-  lightRed    : '#e06c75', // red
-  lightGreen  : '#98c379', // green
-  lightYellow : '#d19a66', // yellow
-  lightBlue   : '#56b6c2', // blue
-  lightMagenta: '#c678dd', // pink
-  lightCyan   : '#56b6c2', // cyan
-  colorCubes  : '#ffffff', // white
-  grayscale   : foregroundColor
+function makeTransparent(color, alpha = DEFAULT_ALPHA) {
+  const { rgb } = parse(color);
+  if (!rgb) return color;
+  return `rgba(${rgb.join(", ")}, ${alpha})`;
 }
 
-exports.decorateConfig = config => {
+const backgroundColor = "#151e31"; // dark blue
+const foregroundColor = "#c6c8d2"; // light gray
+const cursorColor = foregroundColor;
+const borderColor = backgroundColor;
+
+const colors = {
+  black: backgroundColor,
+  red: "#e5663d", // red
+  green: "#7cc54a", // green
+  yellow: "#eadb38", // yellow
+  blue: "#2e88fd", // blue
+  magenta: "#f774c5", // pink
+  cyan: "#42bee1", // cyan
+  white: "#c7c7c7", // light gray
+  lightBlack: "#676767", // medium gray
+  lightRed: "#e89276", // red
+  lightGreen: "#8fc36c", // green
+  lightYellow: "#fefb67", // yellow
+  lightBlue: "#6ea3f5", // blue
+  lightMagenta: "#fc99cb", // pink
+  lightCyan: "#88d6eb", // cyan
+  colorCubes: "#fffefe", // white
+  grayscale: foregroundColor,
+};
+
+module.exports.decorateConfig = (config) => {
+  const { alpha } = config[CONFIG_KEY] || {};
+
   return Object.assign({}, config, {
+    vibrancy: "ultra-dark",
     foregroundColor,
-    backgroundColor,
+    backgroundColor: makeTransparent(backgroundColor, alpha),
     borderColor,
     cursorColor,
     colors,
     termCSS: `
-      ${config.termCSS || ''}
+      ${config.termCSS || ""}
       .cursor-node {
         mix-blend-mode: difference;
         border-left-width: 2px;
       }
     `,
     css: `
-      ${config.css || ''}
+      ${config.css || ""}
+
       .header_header {
         top: 0;
         right: 0;
@@ -157,6 +171,6 @@ exports.decorateConfig = config => {
       .tab_icon::after {
         display: none;
       }
-    `
-  })
-}
+    `,
+  });
+};
