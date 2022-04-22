@@ -1,7 +1,7 @@
 const parse = require("parse-color");
 
 const CONFIG_KEY = "hyperHonukai";
-const DEFAULT_ALPHA = 0.95;
+const DEFAULT_ALPHA = 0.9;
 
 function makeTransparent(color, alpha = DEFAULT_ALPHA) {
   const { rgb } = parse(color);
@@ -39,6 +39,8 @@ const colors = {
 module.exports.decorateConfig = (config) => {
   const { alpha } = config[CONFIG_KEY] || {};
 
+  exports.onWindow = (browserWindow) => browserWindow.setVibrancy("dark");
+
   return Object.assign({}, config, {
     foregroundColor,
     backgroundColor: makeTransparent(backgroundColor, alpha),
@@ -47,6 +49,11 @@ module.exports.decorateConfig = (config) => {
     colors,
     css: `
       ${config.css || ""}
+
+      .hyper_main {
+        background: ${makeTransparent(backgroundColor, alpha)};
+        border: none !important;
+      }
 
       .header_header {
         top: 0;
