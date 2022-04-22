@@ -1,5 +1,7 @@
 # Honukai Theme for Hyper terminal
 
+[![npm](https://img.shields.io/npm/v/hyper-honukai)](https://www.npmjs.com/package/hyper-honukai)
+
 [HyperTerm](https://hyperterm.org) theme based on [honukai-iterm-zsh](https://github.com/oskarkrawczyk/honukai-iterm-zsh). Forked from @ggamel's [Atom One Dark for HyperTerm](https://github.com/ggamel/hyper-one-dark).
 
 ![Screenshot at start](https://raw.githubusercontent.com/simonauner/hyper-honukai/master/demo/start.png)
