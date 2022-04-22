@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Hyper terminal Honukai theme",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "repository": "https://github.com/simonauner/hyper-honukai.git",
   "keywords": [
     "hyperterm",
@@ -15,5 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "parse-color": "^1.0.0"
+  },
+  "scripts": {
+    "test": ""
   }
 }
